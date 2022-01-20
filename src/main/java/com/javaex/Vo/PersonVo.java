@@ -1,7 +1,9 @@
 package com.javaex.Vo;
 
 public class PersonVo {
-
+	
+	
+	
 	private int personId;
 	private String name;
 	private String hp;

@@ -1,35 +1,37 @@
 package com.javaex.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.Vo.PersonVo;
 
 @Repository // 스프링에서 자동으로 꺼내쓸때 필요
-public class PhoneDao {
+public class PhoneDao2 {
 
 	@Autowired
-	private SqlSession sqlSession;
+	private DataSource dataSource;
 
-	public List<PersonVo> getPersonList() {
-		
-		System.out.println("PhoneDao");
-		
-		List<PersonVo>  personList = sqlSession.selectList("phonebook.selectList");
-		System.out.println(personList);
-		return personList;
-	}
-/*
+	// 0. import java.sql.*;
+	private Connection conn = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
+
 	private void getConnection() {
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
 			
 
 			// 2. Connection 얻어오기
-			conn = sqlSession.getConnection();
+			conn = dataSource.getConnection();
 			// System.out.println("접속성공");
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
@@ -245,7 +247,4 @@ public class PhoneDao {
 		return personVo;
 
 	}
-}
-*/
-	
 }
