@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<h1>[phonebook2]</h1>
+	<h1>[phonebook4]</h1>
 	<h2>전화번호 등록폼</h2>
 	<p>
 		전화번호를 등록하려면<br> 아래 항목을 기입하고 "등록" 버튼을 클릭하세요
@@ -23,7 +23,7 @@
 		
 		<button type="submit">등록</button>
 		<br>
-		<a href="http://localhost:8088/phonebook1/list.jsp"> 리스트 가기</a>
+		<a href="http://localhost:8088/phonebook4/list.jsp"> 리스트 가기</a>
 	</form>
 
 </body>

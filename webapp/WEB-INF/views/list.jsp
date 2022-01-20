@@ -36,6 +36,6 @@
 		</table>
 		<br>
 	</c:forEach>
-	<a href="/phonebook3/phone/writeForm">번호 입력하기</a>
+	<a href="/phonebook4/phone/writeForm">번호 입력하기</a>
 </body>
 </html>

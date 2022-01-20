@@ -12,16 +12,79 @@ import com.javaex.Vo.PersonVo;
 public class PhoneDao {
 
 	@Autowired
-	private SqlSession sqlSession;
-
+	private SqlSession sqlSession; //sql쿼리를 불러오는 코드
+	
+	//전체 리스트 가져오기
 	public List<PersonVo> getPersonList() {
 		
-		System.out.println("PhoneDao");
+		System.out.println("PhoneDao.personList()");
 		
 		List<PersonVo>  personList = sqlSession.selectList("phonebook.selectList");
 		System.out.println(personList);
 		return personList;
 	}
+	
+	
+	
+	//전화번호 추가
+	
+	public int personInsert(PersonVo personVo) {
+		
+		
+		System.out.println("PhoneDao.personInsert()");
+		
+		
+		int count = sqlSession.insert("phonebook.insert",personVo);
+		
+		System.out.println(count+"건 추가");
+		
+		return count;
+		/*
+		 이렇게만 적어도 가능
+		return sqlSession.insert("phonebook.insert",personVo);
+		*/
+		
+	}
+	
+	//사람 삭제
+	
+	public int personDelete(int personId) {
+		
+		System.out.println("PhoneDao.personDelete");
+		
+		int count = sqlSession.delete("phonebook.delete", personId);
+		
+		System.out.println(count+"건 삭제");
+		
+		return count;
+	}
+	
+	
+	//사람 수정
+	public int personUpdate(PersonVo personVo) {
+		
+		System.out.println("PhoneDao.personUpdate");
+		System.out.println(personVo);
+		int count = sqlSession.update("phonebook.Update",personVo);
+		System.out.println(count+"건수정 했습니다.");
+		return count;
+	}
+	
+	//사랑 한명 불러오기
+	
+	public PersonVo getPerson(int personId) {
+		
+		System.out.println("PhoneDao.getperson");
+		
+		PersonVo personvo ;
+		
+		personvo = sqlSession.selectOne("phonebook.getperson", personId);
+		
+		System.out.println(personvo+"1명 불러오기");
+		
+		return personvo;
+	}
+	
 /*
 	private void getConnection() {
 		try {

@@ -34,15 +34,13 @@ public class Phonecontroller {
 
 		System.out.println("phonecontroller>writeForm");
 
-
-
 		return "writeForm";
 	}
 	
 	// Vo에 파라미터 값을 자동으로 넣어줌 Vo의 set 값과 파라미터의 이름이 같아야된다. 다르면 안 들어감 디폴트 생성자가 무조건 필요
 	// 없으면 오류남 DispacherServlet 전달함 --> controller 전달받음
 	
-	/*
+	
 	  @RequestMapping(value="/write", method= { RequestMethod.GET,RequestMethod.POST}) 
 	  public String write(@ModelAttribute PersonVo personVo ){
 	 
@@ -58,7 +56,7 @@ public class Phonecontroller {
 	  return "redirect:/phone/list"; 
 	  }
 	 
-*/
+
 	// 두개 다 같이 쓸 수 있음
 	 /*
 	  @RequestMapping(value="write", method= { RequestMethod.GET,RequestMethod.POST} ) 
@@ -117,7 +115,7 @@ public class Phonecontroller {
 		  return "list"; 
 	  }
 	  
-	  /*
+	  
 	  @RequestMapping(value="/delete", method= { RequestMethod.GET,RequestMethod.POST})
 	  public String delete(@RequestParam("personId") int personId){
 		  
@@ -130,9 +128,9 @@ public class Phonecontroller {
 			//리다이렉트
 			  return "redirect:/phone/list"; 
 	  }
-	  */
 	  
-	  /*
+	  
+	 
 	  @RequestMapping(value="/update", method= { RequestMethod.GET,RequestMethod.POST}) 
 	  public String update(@ModelAttribute PersonVo personVo ){
 	 
@@ -147,12 +145,12 @@ public class Phonecontroller {
 		  //리다이렉트
 		  return "redirect:/phone/list"; 
 	  }
-	*/  
 	  
-	  /*
+	  
+	  
 	  //업데이트 폼
 	  @RequestMapping(value = "/updateForm", method = { RequestMethod.GET, RequestMethod.POST })
-		public String updateForm(@RequestParam("personId") int personId,Model model) {
+		public String updateForm(@RequestParam("personId") int personId, Model model) {
 
 		  System.out.println("phonecontroller>updateForm");
 		  //업데이트
@@ -168,8 +166,8 @@ public class Phonecontroller {
 			  
 		  return "updateForm";
 		}
-	  */
-	  
+	   
+	  /*
 	  //RequestMapping 파라미터 값이 무조건 있어야됨 안 그러면 애러남 안에 값을 안 적어두면 상관없음
 	  @RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST })
 	   public String test(  @RequestParam(value="name") String name,
@@ -215,5 +213,5 @@ public class Phonecontroller {
 		  return "writeForm";
 	  }
 	  
-	  	  
+	  */	  
 }
