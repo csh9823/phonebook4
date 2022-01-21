@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,7 +55,21 @@ public class Phonecontroller {
 	  return "redirect:/phone/list"; 
 	  }
 	 
-
+	  
+	  @RequestMapping(value="/write2", method= { RequestMethod.GET,RequestMethod.POST}) 
+	  public String write2(@RequestParam("name") String name, 
+			  @RequestParam("hp") String hp,
+			  @RequestParam("company") String company){
+	 
+	  System.out.println("phonecontroller>write2 MaP사용");
+	  
+	  phoneDao.personInser2(name, hp, company);
+	 
+	 
+	  return "redirect:/phone/list"; 
+	  }
+	  
+	  
 	// 두개 다 같이 쓸 수 있음
 	 /*
 	  @RequestMapping(value="write", method= { RequestMethod.GET,RequestMethod.POST} ) 
@@ -146,7 +159,21 @@ public class Phonecontroller {
 		  return "redirect:/phone/list"; 
 	  }
 	  
+	  //Map 사용
+	  @RequestMapping(value="/update2", method= { RequestMethod.GET,RequestMethod.POST}) 
+	  public String update2(@ModelAttribute PersonVo personVo ){
+	 
+		  System.out.println("update");
 	  
+		  System.out.println(personVo);
+		  //업데이트
+		  //PhoneDao persondao = new PhoneDao();   스프링에선 new 안해도됨
+	  
+		  phoneDao.personUpdate(personVo);
+      
+		  //리다이렉트
+		  return "redirect:/phone/list"; 
+	  }
 	  
 	  //업데이트 폼
 	  @RequestMapping(value = "/updateForm", method = { RequestMethod.GET, RequestMethod.POST })

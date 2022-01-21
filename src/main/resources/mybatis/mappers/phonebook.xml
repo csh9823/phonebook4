@@ -5,7 +5,19 @@
 
 
 
-	<!-- 쿼리문 작성 -->
+	<!-- 맵핑 : 셀렉할때 Vo와 이름 다를경우 여기서 바꾸고 id값을 셀렉하는곳 resultType을 resultMap= 로바꾸고 안에 넣어준다 -->
+	<resultMap id="resultMapPersonVo" type="com.javaex.Vo.PersonVo">
+		<result column="person_id" property="personId" />
+		<result column="name" property="name" />
+		<result column="hp" property="hp" />
+		<result column="company" property="company" />
+	</resultMap>
+
+
+
+
+	<!-- 쿼리문 작성  전체 리스트 가져오기-->
+	
 	<select id="selectList" resultType="com.javaex.Vo.PersonVo"> 	<!--id="selectList" 불러온 이름 뒤에 붙는 이름 -->
 	
 	<![CDATA[
@@ -18,9 +30,63 @@
 	]]>
 
 	</select>
+	
+	
+	<!-- 전화번호 1명 불러오기 기본
+	<select id="getperson" parameterType="int" resultType="com.javaex.Vo.PersonVo" >
+		<![CDATA[
+				select  person_id personId,
+        				name,
+        				hp,
+        				company
+				from    person
+				where person_id = #{personId}
+			]]>
+	</select>
+	 -->
+	
+	<!-- 전화번호 한명 불러오기 resultMap 사용 -->
+	<select id="getperson" parameterType="int" resultMap="resultMapPersonVo" >
+		<![CDATA[
+				select  person_id,
+        				name,
+        				hp,
+        				company
+				from    person
+				where person_id = #{personId}
+			]]>
+	</select>
+	
+	<!-- 전화번호 한명 불러오기 Map 사용 -->
+	
+	<select id="getperson2" parameterType="int" resultType="map" >
+		<![CDATA[
+				select  person_id,
+        				name,
+        				hp,
+        				company
+				from    person
+				where person_id = #{personId}
+			]]>
+	</select>
+	
+	<!-- 전화번호 추가 Map 사용--> 
+	
+	<insert id="insert2" parameterType="Map">
+	<![CDATA[
+		insert into person
+		values (SEQ_PERSON_ID.nextval, 
+										#{name},
+										#{hp},
+										#{company})
+	]]>
 
-
-	<!-- 전화번호 추가 -->
+	</insert>
+	
+	
+	
+	
+	<!--  전화번호 추가 -->
 	<insert id="insert" parameterType="com.javaex.Vo.PersonVo">
 	<![CDATA[
 		insert into person
@@ -32,6 +98,7 @@
 
 	</insert>
 
+
 	<!-- 전화번호 삭제 -->
 	<delete id="delete" parameterType="int"> <!-- parameterType="int" 넘어온 파라미터에서 인트를 받아라 -->
 		<![CDATA[
@@ -40,20 +107,9 @@
 		]]>
 	</delete>
 
-	<!-- 전화번호 한명 불러오기 -->
-	<select id="getperson" parameterType="int" resultType="com.javaex.Vo.PersonVo">
-		<![CDATA[
-				select  person_id personId,
-        				name,
-        				hp,
-        				company
-				from    person
-				where person_id = #{personId}
-			]]>
-	</select>
-	
+
 	<!-- 전화번호 수정 -->
-	
+
 	<update id="Update" parameterType="com.javaex.Vo.PersonVo">
 		<![CDATA[
 			update  person 
@@ -63,5 +119,5 @@
 			where person_id = #{personId}
 		]]>
 	</update>
-	
+
 </mapper>

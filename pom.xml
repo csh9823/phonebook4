@@ -42,13 +42,6 @@
 			<version>11.2.0.4</version>
 		</dependency>
 
-		<!-- jstl -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-
 		<!-- spring jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>

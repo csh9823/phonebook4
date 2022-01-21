@@ -1,6 +1,8 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,15 @@ public class PhoneDao {
 		System.out.println("PhoneDao.personList()");
 		
 		List<PersonVo>  personList = sqlSession.selectList("phonebook.selectList");
-		System.out.println(personList);
+		
+		
 		return personList;
 	}
 	
 	
 	
 	//전화번호 추가
+	
 	
 	public int personInsert(PersonVo personVo) {
 		
@@ -39,11 +43,29 @@ public class PhoneDao {
 		System.out.println(count+"건 추가");
 		
 		return count;
-		/*
-		 이렇게만 적어도 가능
-		return sqlSession.insert("phonebook.insert",personVo);
-		*/
 		
+		 //이렇게만 적어도 가능
+		//return sqlSession.insert("phonebook.insert",personVo);
+		
+		
+	}
+	
+		public int personInser2(String name,String hp,String company) {
+		
+		
+			System.out.println("PhoneDao.personInsert() 파라미터로 여러개로 받을때");
+						
+			Map<String, String> personMap = new HashMap<String, String>();
+			personMap.put("name", name); // 앞쪽 키값(xml에 써줄 값) 뒤쪽 입력 값
+			personMap.put("hp", hp);
+			personMap.put("company", company);
+			
+			int count = sqlSession.insert("phonebook.insert2",personMap);
+		
+			System.out.println(count+"건 추가");
+		
+			return 0;
+				
 	}
 	
 	//사람 삭제
@@ -70,13 +92,13 @@ public class PhoneDao {
 		return count;
 	}
 	
-	//사랑 한명 불러오기
-	
+	/*사랑 한명 불러오기*/
+	/*
 	public PersonVo getPerson(int personId) {
 		
 		System.out.println("PhoneDao.getperson");
 		
-		PersonVo personvo ;
+		PersonVo personvo;
 		
 		personvo = sqlSession.selectOne("phonebook.getperson", personId);
 		
@@ -84,6 +106,29 @@ public class PhoneDao {
 		
 		return personvo;
 	}
+	*/
+	
+	
+	public PersonVo getPerson(int personId) {
+		
+		System.out.println("PhoneDao.getPerson()");
+
+		//PersonVo personVo = sqlSession.selectOne("phonebook.selectPerson", personId);
+		Map<String, Object> personMap =  sqlSession.selectOne("phonebook.getperson2", personId);
+		System.out.println(personMap.keySet());
+		System.out.println(personMap);
+		
+		
+		System.out.println(personMap.get("PERSON_ID"));
+		System.out.println(personMap.get("NAME"));
+		System.out.println(personMap.get("HP"));
+		System.out.println(personMap.get("COMPANY"));
+		
+		
+		return null;
+	}
+
+	
 	
 /*
 	private void getConnection() {

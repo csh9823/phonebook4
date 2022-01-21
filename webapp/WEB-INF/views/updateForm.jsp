@@ -11,7 +11,7 @@
 
 	<h2>전화번호 수정화면</h2>
 	
-		<form action="/phonebook4/phone/update" method="get">
+		<form action="/phonebook4/phone/update2" method="get">
 			이름(name) : <input type="text" name="name" value= "${personVo.name}"> <br>
 			핸드폰(hp) : <input type="text" name="hp" value="${personVo.hp}"> <br>
 			회사(company) : <input type="text" name="company" value="${personVo.company}"> <br>
